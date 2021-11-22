@@ -39,11 +39,13 @@ quart==0.16.1
 Quart-CORS==0.5.0
 regex==2021.11.10
 requests==2.26.0
+rouge==1.0.1
 sacremoses==0.0.46
 sentencepiece==0.1.96
 six==1.16.0
 tokenizers==0.10.3
 toml==0.10.2
+torch==1.10.0
 tqdm==4.62.3
 transformers==4.12.5
 typing_extensions==4.0.0
