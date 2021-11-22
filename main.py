@@ -1,9 +1,11 @@
 import time
 
 from quart import Quart
-from quart_cors import cors
 from quart import request, abort
+from quart_cors import cors
+from rouge import Rouge
 
+rouge = Rouge()
 app = Quart(__name__)
 app = cors(app, allow_origin="*")
 
@@ -40,13 +42,21 @@ async def summarize():
         "error": 0,
         "data": {
             "compute_summary": the_summary,
-            "time": '{:.2f}'.format(1000*(time.perf_counter() - t0))
+            "time": '{:.2f}'.format(1000 * (time.perf_counter() - t0))
         }
     }
 
 
 def rate(gold_summary, compute_summary):
-    return (10, 20, 50)
+    r = rouge.get_scores(gold_summary, compute_summary)
+    return {
+        "error": 0,
+        "data": {
+            "rouge_1": r[0]['rouge-1']['f'],  # or p or r
+            "rouge_2": r[0]['rouge-2']['f'],  # or p or r
+            "rouge_l": r[0]['rouge-l']['f'],  # or p or r
+        }
+    }
 
 
 @app.route("/api/v1/rate", methods=['POST'])
