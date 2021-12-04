@@ -67,3 +67,5 @@ target/
 venv*
 *.pkl
 *.local.conf
+cnn_dailymail/
+pegasus-cnn_dailymail/
