@@ -17,10 +17,10 @@ def summary(text):
 
 
 def example_data():
-    i = random.randint(0, dataset['train'].num_rows)
+    i = random.randint(0, dataset['test'].num_rows)
     return (
-        dataset['train'][i]['article'],
-        dataset['train'][i]['highlights']
+        dataset['test'][i]['article'],
+        dataset['test'][i]['highlights']
     )
 
 
